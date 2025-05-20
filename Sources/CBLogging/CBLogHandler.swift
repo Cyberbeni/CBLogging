@@ -46,7 +46,7 @@ public struct CBLogHandler: LogHandler {
 
 		let timestamp = Self.dateFormatter.string(from: .now)
 
-		print("\(timestamp) \(level) [\(file):\(line)] - \(message)\(prettyMetadata.map { "\nMetadata: \($0)" } ?? "")")
+		print("\(timestamp) [\(level)] [\(file):\(line)] - \(message)\(prettyMetadata.map { "\nMetadata: \($0)" } ?? "")")
 	}
 }
 
