@@ -1,5 +1,8 @@
 import Foundation
 @_exported import Logging
+#if canImport(SwiftGlibc)
+	@preconcurrency import SwiftGlibc
+#endif
 
 public struct CBLogHandler: LogHandler {
 	private var prettyMetadata: String?
@@ -54,6 +57,7 @@ public extension CBLogHandler {
 	static let appLogger = Logger(label: "_")
 
 	static func bootstrap(defaultLogLevel: Logger.Level, appLogLevel: Logger.Level) {
+		setlinebuf(stdout)
 		LoggingSystem.bootstrap { label in
 			switch label {
 			case "_":
