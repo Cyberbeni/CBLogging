@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "CBLogging",
+	platforms: [.macOS(.v12)],
 	products: [
 		.library(
 			name: "CBLogging",
