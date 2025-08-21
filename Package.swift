@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "CBLogging",
+	platforms: [.macOS(.v12)],
 	products: [
 		.library(
 			name: "CBLogging",
@@ -12,7 +13,7 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		.package(url: "https://github.com/apple/swift-log", from: "1.6.3"),
+		.package(url: "https://github.com/apple/swift-log", from: "1.6.4"),
 	],
 	targets: [
 		.target(
