@@ -1,4 +1,3 @@
-import Foundation
 @_exported import Logging
 #if canImport(SwiftGlibc)
 	@preconcurrency import SwiftGlibc
@@ -47,7 +46,7 @@ public struct CBLogHandler: LogHandler {
 			self.prettyMetadata
 		}
 
-		let timestamp = Self.dateFormatter.string(from: .now)
+		let timestamp = Formatter.format(date: .now)
 
 		print("\(timestamp) [\(level)] [\(file):\(line)] - \(message)\(prettyMetadata.map { "\nMetadata: \($0)" } ?? "")")
 	}
@@ -70,20 +69,6 @@ public extension CBLogHandler {
 }
 
 private extension CBLogHandler {
-	static let userLocale: Locale = if let localeId = ProcessInfo.processInfo.environment["LANG"] {
-		.init(identifier: localeId)
-	} else {
-		.current
-	}
-
-	static let dateFormatter: DateFormatter = {
-		let formatter = DateFormatter()
-		formatter.locale = userLocale
-		formatter.dateStyle = .short
-		formatter.timeStyle = .medium
-		return formatter
-	}()
-
 	func prettify(_ metadata: Logger.Metadata) -> String? {
 		if metadata.isEmpty {
 			nil
