@@ -15,6 +15,7 @@ enum Formatter {
 				dateSeparator: .dash,
 				dateTimeSeparator: .space,
 				timeSeparator: .colon,
+				timeZone: .current,
 			))
 		#endif
 	}
