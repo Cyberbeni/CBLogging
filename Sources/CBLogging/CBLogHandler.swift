@@ -1,7 +1,11 @@
-@_exported import Logging
-#if canImport(SwiftGlibc)
-	@preconcurrency import SwiftGlibc
+#if canImport(Darwin)
+	import Darwin
+#elseif canImport(Glibc)
+	@preconcurrency import Glibc
+#elseif canImport(Musl)
+	import Musl
 #endif
+@_exported import Logging
 
 public struct CBLogHandler: LogHandler {
 	private var prettyMetadata: String?
