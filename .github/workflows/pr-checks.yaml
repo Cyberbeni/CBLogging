@@ -6,5 +6,7 @@ on:
     branches: master
 
 jobs:
+  swiftformat-lint:
+    uses: Cyberbeni/workflows/.github/workflows/swiftformat-lint.yml@master
   swift-test:
     uses: Cyberbeni/workflows/.github/workflows/swift-test.yml@master

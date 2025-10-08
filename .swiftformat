@@ -1,0 +1,11 @@
+--swiftversion 6.1
+
+--maxwidth 140
+--indent tab
+--tabwidth 3
+
+--enable isEmpty
+
+--disable conditionalAssignment
+
+--lintonly unusedArguments

@@ -36,12 +36,12 @@ public struct CBLogHandler: LogHandler {
 		source _: String,
 		file: String,
 		function _: String,
-		line: UInt
+		line: UInt,
 	) {
 		let effectiveMetadata = prepareMetadata(
 			base: metadata,
 			provider: metadataProvider,
-			explicit: explicitMetadata
+			explicit: explicitMetadata,
 		)
 
 		let prettyMetadata: String? = if let effectiveMetadata {
@@ -84,7 +84,7 @@ private extension CBLogHandler {
 	func prepareMetadata(
 		base: Logger.Metadata,
 		provider: Logger.MetadataProvider?,
-		explicit: Logger.Metadata?
+		explicit: Logger.Metadata?,
 	) -> Logger.Metadata? {
 		var metadata = base
 

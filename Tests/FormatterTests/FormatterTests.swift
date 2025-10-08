@@ -1,6 +1,6 @@
 @testable import CBLogging
-import Testing
 import Foundation
+import Testing
 
 struct FormatterTests {
 	init() {
@@ -17,4 +17,3 @@ struct FormatterTests {
 		#endif
 	}
 }
-
