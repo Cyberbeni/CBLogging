@@ -1,6 +1,4 @@
-#if LocalizedTimestamp
-	import Foundation
-#elseif canImport(FoundationEssentials)
+#if !LocalizedTimestamp && canImport(FoundationEssentials)
 	import FoundationEssentials
 #else
 	import Foundation
@@ -9,7 +7,7 @@
 enum Formatter {
 	static func format(date: Date) -> String {
 		#if LocalizedTimestamp
-			Self.dateFormatter.string(from: date)
+			dateFormatter.string(from: date)
 		#else
 			date.ISO8601Format(.init(
 				dateSeparator: .dash,
@@ -21,8 +19,8 @@ enum Formatter {
 	}
 }
 
-private extension Formatter {
-	#if LocalizedTimestamp
+#if LocalizedTimestamp
+	private extension Formatter {
 		static let userLocale: Locale = if let localeId = ProcessInfo.processInfo.environment["LANG"] {
 			.init(identifier: localeId)
 		} else {
@@ -36,5 +34,5 @@ private extension Formatter {
 			formatter.timeStyle = .medium
 			return formatter
 		}()
-	#endif
-}
+	}
+#endif

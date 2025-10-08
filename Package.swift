@@ -9,18 +9,20 @@ let package = Package(
 	products: [
 		.library(
 			name: "CBLogging",
-			targets: ["CBLogging"]
+			targets: ["CBLogging"],
 		),
 	],
 	traits: [
 		.init(
 			name: "LocalizedTimestamp",
-			description: "Import Foundation and use current Locale to format the timestamp."
+			description: "Import Foundation and use current Locale to format the timestamp.",
 		),
 		.default(enabledTraits: ["LocalizedTimestamp"]),
 	],
 	dependencies: [
 		.package(url: "https://github.com/apple/swift-log", from: "1.6.4"),
+		// Plugins:
+		.package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.58.3"),
 	],
 	targets: [
 		.target(
@@ -32,8 +34,8 @@ let package = Package(
 		.testTarget(
 			name: "FormatterTests",
 			dependencies: [
-				"CBLogging"
+				"CBLogging",
 			],
-		)
-	]
+		),
+	],
 )
