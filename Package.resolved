@@ -1,22 +1,22 @@
 {
-  "originHash" : "14bc1a4a64a0bd55f2614678c4e39b0cf88f14e4316d467adfc84cfb8d9c7e73",
+  "originHash" : "114c71f49551381284fd6122aea9672fc3e296c08bbc29599bc9830b3de4b9cb",
   "pins" : [
     {
       "identity" : "swift-log",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "ce592ae52f982c847a4efc0dd881cc9eb32d29f2",
-        "version" : "1.6.4"
+        "revision" : "2778fd4e5a12a8aaa30a3ee8285f4ce54c5f3181",
+        "version" : "1.9.1"
       }
     },
     {
-      "identity" : "swiftformat",
+      "identity" : "swiftformat-mirror",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nicklockwood/SwiftFormat",
+      "location" : "https://codeberg.org/Cyberbeni/SwiftFormat-mirror",
       "state" : {
-        "revision" : "de413fec1d5ab86fa61fa90b771063d2702440dc",
-        "version" : "0.58.3"
+        "revision" : "af6d5e684e6b003ea8b1ce433914eb8435fc42bf",
+        "version" : "0.59.1"
       }
     }
   ],
