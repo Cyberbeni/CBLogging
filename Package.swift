@@ -20,15 +20,20 @@ let package = Package(
 		.default(enabledTraits: ["LocalizedTimestamp"]),
 	],
 	dependencies: [
-		.package(url: "https://github.com/apple/swift-log", from: "1.6.4"),
+		.package(url: "https://github.com/apple/swift-log", from: "1.9.1"),
 		// Plugins:
-		.package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.58.3"),
+		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.59.1"),
 	],
 	targets: [
 		.target(
 			name: "CBLogging",
 			dependencies: [
 				.product(name: "Logging", package: "swift-log"),
+			],
+			swiftSettings: [
+				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
+				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
+				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
 		),
 		.testTarget(
