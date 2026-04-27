@@ -29,19 +29,11 @@ public struct CBLogHandler: LogHandler {
 		}
 	}
 
-	public func log(
-		level: Logger.Level,
-		message: Logger.Message,
-		metadata explicitMetadata: Logger.Metadata?,
-		source _: String,
-		file: String,
-		function _: String,
-		line: UInt,
-	) {
+	public func log(event: LogEvent) {
 		let effectiveMetadata = prepareMetadata(
 			base: metadata,
 			provider: metadataProvider,
-			explicit: explicitMetadata,
+			explicit: event.metadata,
 		)
 
 		let prettyMetadata: String? = if let effectiveMetadata {
@@ -52,7 +44,9 @@ public struct CBLogHandler: LogHandler {
 
 		let timestamp = Formatter.format(date: .now)
 
-		print("\(timestamp) [\(level)] [\(file):\(line)] - \(message)\(prettyMetadata.map { "\nMetadata: \($0)" } ?? "")")
+		print(
+			"\(timestamp) [\(event.level)] [\(event.file):\(event.line)] - \(event.message)\(prettyMetadata.map { "\nMetadata: \($0)" } ?? "")",
+		)
 	}
 }
 

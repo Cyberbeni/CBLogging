@@ -1,4 +1,4 @@
-// swift-tools-version: 6.1
+// swift-tools-version: 6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -20,9 +20,9 @@ let package = Package(
 		.default(enabledTraits: []),
 	],
 	dependencies: [
-		.package(url: "https://github.com/apple/swift-log", from: "1.9.1"),
+		.package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
 		// Plugins:
-		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.59.1"),
+		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.60.1"),
 	],
 	targets: [
 		.target(
@@ -31,8 +31,7 @@ let package = Package(
 				.product(name: "Logging", package: "swift-log"),
 			],
 			swiftSettings: [
-				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
-				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
+				.treatAllWarnings(as: .error, .when(configuration: .release)),
 				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
 		),
