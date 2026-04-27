@@ -1,7 +1,12 @@
-#if !LocalizedTimestamp && canImport(FoundationEssentials)
-	import FoundationEssentials
-#else
+#if LocalizedTimestamp || !canImport(FoundationEssentials)
 	import Foundation
+#else
+	import FoundationEssentials
+	#if canImport(Musl)
+		import Musl
+	#elseif canImport(Glibc)
+		import Glibc
+	#endif
 #endif
 
 enum Formatter {
@@ -18,11 +23,25 @@ enum Formatter {
 				))
 			}
 		#else
-			date.ISO8601Format(.init(
+			#if canImport(FoundationEssentials)
+				// https://forums.swift.org/t/is-timezone-current-expected-to-work-with-import-foundationessentials/86270
+				var timeZone = TimeZone.current
+				if timeZone.identifier == "GMT",
+				   case var time = time_t(date.timeIntervalSince1970),
+				   case var timeinfo = tm(),
+				   case _ = localtime_r(&time, &timeinfo),
+				   let actualTimeZone = TimeZone(secondsFromGMT: timeinfo.tm_gmtoff)
+				{
+					timeZone = actualTimeZone
+				}
+			#else
+				let timeZone = TimeZone.current
+			#endif
+			return date.ISO8601Format(.init(
 				dateSeparator: .dash,
 				dateTimeSeparator: .space,
 				timeSeparator: .colon,
-				timeZone: .current,
+				timeZone: timeZone,
 			))
 		#endif
 	}
