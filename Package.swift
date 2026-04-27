@@ -20,9 +20,9 @@ let package = Package(
 		.default(enabledTraits: []),
 	],
 	dependencies: [
-		.package(url: "https://github.com/apple/swift-log", from: "1.9.1"),
+		.package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
 		// Plugins:
-		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.59.1"),
+		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.60.1"),
 	],
 	targets: [
 		.target(
