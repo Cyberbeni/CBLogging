@@ -17,7 +17,6 @@ let package = Package(
 			name: "LocalizedTimestamp",
 			description: "Import Foundation and use current Locale to format the timestamp.",
 		),
-		.default(enabledTraits: []),
 	],
 	dependencies: [
 		.package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
