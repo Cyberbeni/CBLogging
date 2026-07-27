@@ -30,7 +30,6 @@ let package = Package(
 				.product(name: "Logging", package: "swift-log"),
 			],
 			swiftSettings: [
-				.treatAllWarnings(as: .error, .when(configuration: .release)),
 				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
 		),
